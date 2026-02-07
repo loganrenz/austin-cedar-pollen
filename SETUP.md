@@ -1,10 +1,22 @@
 # New app setup (from nuxt-v4-template)
 
-Use this when you create a **new app** by copying or cloning this template into a new directory.
+Use this when you create a **new app** from this template.
+
+## Get the template
+
+Checkout the template with the GitHub CLI (requires **gh** installed and authenticated):
+
+```bash
+gh repo clone loganrenz/nuxt-v4-template <APP_NAME>
+cd <APP_NAME>
+```
+
+Replace `<APP_NAME>` with your app slug (e.g. `my-app`). If the repo lives under a different org/user, use that instead of `loganrenz`.
 
 ## Prerequisites
 
 - **Node.js** 20+
+- **GitHub CLI (gh)** installed and logged in (`gh auth status`)
 - **Doppler CLI** installed and logged in (`doppler login`)
 - **nuxt_template** Doppler project has these secrets (config `base`):
   - `GA_ACCOUNT_ID`
@@ -23,7 +35,7 @@ Use this when you create a **new app** by copying or cloning this template into 
 
 ## One-command setup (recommended)
 
-From the **new app directory** (the copy of the template):
+From the **new app directory** (after `gh repo clone ...` and `cd <APP_NAME>`):
 
 ```bash
 npm run setup:new-app -- <APP_NAME> <SITE_URL>
@@ -51,7 +63,9 @@ The script will:
 6. Run `npm install`.
 7. Run analytics setup (`setup:all`) using **nuxt_template** + your `SITE_URL` (writes `GA_MEASUREMENT_ID` into your app’s Doppler).
 
-## After the script: deploy and GSC verify
+## After the script: deploy and GSC verify (required)
+
+Setup is not complete until you run these two commands from the app directory:
 
 1. **Deploy** (use your app’s Doppler so build gets `SITE_URL` and `GA_MEASUREMENT_ID`):
 
@@ -59,13 +73,13 @@ The script will:
    doppler run -- npm run deploy
    ```
 
-2. **Verify Google Search Console** (use nuxt_template for GSC credentials, override `SITE_URL`):
+2. **Verify Google Search Console** (use nuxt_template for GSC credentials; quote SITE_URL):
 
    ```bash
-   SITE_URL=<your SITE_URL> doppler run --project nuxt_template --config base -- npm run setup:gsc:verify
+   SITE_URL="https://my-app.pages.dev" doppler run --project nuxt_template --config base -- npm run setup:gsc:verify
    ```
 
-Replace `<your SITE_URL>` with the same value you passed to the setup script (e.g. `https://my-app.pages.dev`).
+Replace `https://my-app.pages.dev` with your actual SITE_URL (the same value you passed to the setup script).
 
 ## Optional: run steps manually
 
