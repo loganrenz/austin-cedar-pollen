@@ -28,14 +28,14 @@ export default defineNuxtConfig({
     googlePollenApiKey: process.env.GOOGLE_POLLEN_API_KEY || '',
     openweatherApiKey: process.env.OPENWEATHER_API_KEY || '',
     public: {
-      appUrl: process.env.SITE_URL || 'https://austin-cedar-pollen.pages.dev',
+      appUrl: process.env.SITE_URL || 'https://pollen.nardukapps.com',
       posthogKey: '',
       ga4Id: ''
     }
   },
 
   site: {
-    url: 'https://austin-cedar-pollen.pages.dev',
+    url: 'https://pollen.nardukapps.com',
     name: 'Austin Cedar Pollen Count — Live Tracker & Forecast'
   },
 
@@ -62,7 +62,7 @@ export default defineNuxtConfig({
         { property: 'og:title', content: 'Austin Cedar Pollen Count — Live Tracker & Forecast' },
         { property: 'og:description', content: 'Live cedar pollen tracking for Austin, TX. Current levels, 5-day forecast, and seasonal trends.' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: 'https://austin-cedar-pollen.pages.dev' },
+        { property: 'og:url', content: 'https://pollen.nardukapps.com' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Austin Cedar Pollen Count — Live Tracker & Forecast' },
         { name: 'twitter:description', content: 'Live cedar pollen tracking for Austin, TX. Current levels, 5-day forecast, and seasonal trends.' },
