@@ -9,7 +9,8 @@
  *   DOPPLER_PROJECT  optional, default: APP_NAME
  *   DOPPLER_CONFIG   optional, default: dev_base
  *
- * Prerequisites: Doppler CLI logged in, nuxt_template has GA_ACCOUNT_ID, GSC_*, POSTHOG_PERSONAL_API_KEY.
+ * Prerequisites: Doppler CLI logged in, nuxt_template has GA_ACCOUNT_ID, GSC_*,
+ *   POSTHOG_PUBLIC_KEY (project API key, phc_...), POSTHOG_PERSONAL_API_KEY (phx_...).
  */
 
 import { execSync } from 'node:child_process'
@@ -141,9 +142,13 @@ try {
   if (sharedKey) {
     run(`doppler secrets set POSTHOG_PUBLIC_KEY="${sharedKey}" --project ${DOPPLER_PROJ} --config ${DOPPLER_CFG}`)
     console.log('  ✓ Doppler POSTHOG_PUBLIC_KEY (shared project) set')
+  } else {
+    console.warn('  ⚠ POSTHOG_PUBLIC_KEY not found in nuxt_template. PostHog tracking will be disabled.')
+    console.warn('    To fix: set POSTHOG_PUBLIC_KEY (phc_...) in Doppler project nuxt_template, config base.')
+    console.warn('    Find it in PostHog: Settings > Project > Project API Key.')
   }
 } catch {
-  // ignore
+  console.warn('  ⚠ Could not copy POSTHOG_PUBLIC_KEY from nuxt_template. PostHog tracking will be disabled.')
 }
 
 // 6. Pages project
