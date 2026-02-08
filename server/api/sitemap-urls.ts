@@ -1,18 +1,10 @@
-export default defineEventHandler(async (event) => {
-  // Static pages
-  const staticPages = [
-    { loc: '/', priority: 1.0, changefreq: 'daily' },
-    // Add more static routes here as you build them
+/**
+ * Dynamic sitemap URLs for cedar pollen tracker
+ */
+export default defineEventHandler(() => {
+  return [
+    { loc: '/', changefreq: 'daily', priority: 1.0 },
+    { loc: '/about', changefreq: 'monthly', priority: 0.8 },
+    { loc: '/tips', changefreq: 'monthly', priority: 0.8 },
   ]
-
-  // Dynamic pages from D1 (example: users profile or public posts)
-  // const db = useDatabase()
-  // const users = await db.select({ id: users.id }).from(users).all()
-  // const userPages = users.map(u => ({ loc: `/users/${u.id}`, priority: 0.5 }))
-  const dynamicPages: any[] = []
-
-  return [...staticPages, ...dynamicPages].map(p => ({
-    ...p,
-    lastmod: new Date().toISOString()
-  }))
 })

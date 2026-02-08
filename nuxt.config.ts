@@ -1,6 +1,3 @@
-import { resolve } from 'node:path'
-import pkg from './package.json'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -23,35 +20,21 @@ export default defineNuxtConfig({
     colorMode: true
   },
 
-  // Inject build-time constants available in client & server code
-  vite: {
-    define: {
-      __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
-      __APP_VERSION__: JSON.stringify(pkg.version)
-    }
+  colorMode: {
+    preference: 'system'
   },
 
-    runtimeConfig: {
-    // Server-only keys (override via env vars)
-    appleTeamId: process.env.APPLE_TEAM_ID || '',
-    appleClientId: process.env.APPLE_CLIENT_ID || '',
-    appleKeyId: process.env.APPLE_KEY_ID || '',
-    appleSecretKey: process.env.APPLE_SECRET_KEY || '',
-
+  runtimeConfig: {
+    googlePollenApiKey: process.env.GOOGLE_POLLEN_API_KEY || '',
+    openweatherApiKey: process.env.OPENWEATHER_API_KEY || '',
     public: {
-      // Analytics
-      posthogPublicKey: process.env.POSTHOG_PUBLIC_KEY || '',
-      posthogHost: process.env.POSTHOG_HOST || 'https://us.i.posthog.com',
-      gaMeasurementId: process.env.GA_MEASUREMENT_ID || '',
-      appUrl: process.env.SITE_URL || 'https://nuxt-v4-template.pages.dev',
-      // App name for partitioning in a single PostHog project (set APP_NAME in Doppler)
-      appName: process.env.APP_NAME || pkg.name || ''
+      appUrl: process.env.SITE_URL || 'https://austin-cedar-pollen.pages.dev'
     }
   },
 
   site: {
-    url: 'https://nuxt-v4-template.pages.dev',
-    name: 'Nuxt v4 Template'
+    url: 'https://austin-cedar-pollen.pages.dev',
+    name: 'Austin Cedar Pollen Count — Live Tracker & Forecast'
   },
 
   sitemap: {
@@ -69,14 +52,22 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      script: [
-        // Apple MapKit JS — loaded globally, initialized in components via mapkit.init()
-        {
-          src: 'https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js',
-          crossorigin: 'anonymous',
-          async: true
-        }
+      title: 'Austin Cedar Pollen Count — Live Tracker & Forecast',
+      htmlAttrs: { lang: 'en' },
+      meta: [
+        { name: 'description', content: 'Live Austin, TX cedar pollen count, 5-day forecast, and 30-day trends. Track mountain cedar allergy levels during cedar fever season (Dec–Feb). Free daily updates.' },
+        { name: 'keywords', content: 'austin pollen count today, cedar fever austin, mountain cedar allergy, austin allergy forecast, cedar pollen tracker' },
+        { property: 'og:title', content: 'Austin Cedar Pollen Count — Live Tracker & Forecast' },
+        { property: 'og:description', content: 'Live cedar pollen tracking for Austin, TX. Current levels, 5-day forecast, and seasonal trends.' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'https://austin-cedar-pollen.pages.dev' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'theme-color', content: '#1a1a2e' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
       ]
-    }
+    },
+    pageTransition: { name: 'page', mode: 'out-in' }
   }
 })

@@ -1,3 +1,0 @@
-# Doppler project for this app. Run: doppler run -- npm run dev
-project: nuxt_template
-config: base
