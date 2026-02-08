@@ -66,10 +66,11 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Austin Cedar Pollen Count — Live Tracker & Forecast' },
         { name: 'twitter:description', content: 'Live cedar pollen tracking for Austin, TX. Current levels, 5-day forecast, and seasonal trends.' },
-        { property: 'og:image', content: 'https://pollen.nardukapps.com/api/og' },
+        { property: 'og:image', content: 'https://austin-cedar-pollen.pages.dev/api/og' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
-        { name: 'twitter:image', content: 'https://pollen.nardukapps.com/api/og' },
+        { property: 'og:image:type', content: 'image/svg+xml' },
+        { name: 'twitter:image', content: 'https://austin-cedar-pollen.pages.dev/api/og' },
         { name: 'theme-color', content: '#1a1a2e' },
         { name: 'google-site-verification', content: '' }
       ],
