@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     googlePollenApiKey: process.env.GOOGLE_POLLEN_API_KEY || '',
     openweatherApiKey: process.env.OPENWEATHER_API_KEY || '',
     public: {
-      appUrl: process.env.SITE_URL || 'https://pollen.nardukapps.com',
+      appUrl: process.env.SITE_URL || 'https://austin-cedar-pollen.pages.dev',
       posthogKey: process.env.POSTHOG_PUBLIC_KEY || '',
       ga4Id: process.env.GA_MEASUREMENT_ID || '',
       // App name for partitioning in a single PostHog project (set APP_NAME in Doppler)
@@ -39,12 +39,16 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: 'https://pollen.nardukapps.com',
+    url: 'https://austin-cedar-pollen.pages.dev',
     name: 'Austin Cedar Pollen Count — Live Tracker & Forecast'
   },
 
   sitemap: {
     sources: ['/api/sitemap-urls']
+  },
+
+  robots: {
+    disallow: ['/api/']
   },
 
   nitro: {
@@ -66,7 +70,8 @@ export default defineNuxtConfig({
         { property: 'og:title', content: 'Austin Cedar Pollen Count — Live Tracker & Forecast' },
         { property: 'og:description', content: 'Live cedar pollen tracking for Austin, TX. Current levels, 5-day forecast, and seasonal trends.' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: 'https://pollen.nardukapps.com' },
+        { property: 'og:url', content: 'https://austin-cedar-pollen.pages.dev' },
+        { property: 'og:site_name', content: 'Austin Cedar Pollen Count' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Austin Cedar Pollen Count — Live Tracker & Forecast' },
         { name: 'twitter:description', content: 'Live cedar pollen tracking for Austin, TX. Current levels, 5-day forecast, and seasonal trends.' },
@@ -79,7 +84,8 @@ export default defineNuxtConfig({
         { name: 'google-site-verification', content: '' }
       ],
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'canonical', href: 'https://austin-cedar-pollen.pages.dev' }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' }
