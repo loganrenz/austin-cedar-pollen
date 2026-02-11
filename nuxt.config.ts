@@ -1,3 +1,5 @@
+import pkg from './package.json'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -30,7 +32,9 @@ export default defineNuxtConfig({
     public: {
       appUrl: process.env.SITE_URL || 'https://pollen.nardukapps.com',
       posthogKey: '',
-      ga4Id: ''
+      ga4Id: '',
+      // App name for partitioning in a single PostHog project (set APP_NAME in Doppler)
+      appName: process.env.APP_NAME || pkg.name || ''
     }
   },
 
