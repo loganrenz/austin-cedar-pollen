@@ -31,8 +31,8 @@ export default defineNuxtConfig({
     openweatherApiKey: process.env.OPENWEATHER_API_KEY || '',
     public: {
       appUrl: process.env.SITE_URL || 'https://pollen.nardukapps.com',
-      posthogKey: '',
-      ga4Id: '',
+      posthogKey: process.env.POSTHOG_PUBLIC_KEY || '',
+      ga4Id: process.env.GA_MEASUREMENT_ID || '',
       // App name for partitioning in a single PostHog project (set APP_NAME in Doppler)
       appName: process.env.APP_NAME || pkg.name || ''
     }
